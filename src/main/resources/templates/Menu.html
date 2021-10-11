@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Menu</title>
+	
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+     <script th:src="@{/webjars/js/umd/pepper.min.js}"></script>
+     
+
+	<!-- CSS -->
+	<link th:href="@{/css/menu.css}" rel="stylesheet" />
+
+	<style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    
+</head>
+<body>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- NAV BAR ^ ^  -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+    	<!-- LOGO -->
+  		<div class="container-fluid">
+  		<!-- <div class="container-xl"> -->
+  			<a class="navbar-brand" href="#">
+      			<img th:src="@{/img/Logo_new.png}" width="50px" height="50px" class="d-inline-block align-top" alt="">
+   			 </a>
+    	<button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+      		<span class="navbar-toggler-icon"></span>
+    	</button>
+    	
+    	<!-- Menu -->
+     	<div class="topnav-right offcanvas-collapse" id="navbarsExampleDefault">
+      		<ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navbar">
+        		<li class="nav-item">
+          			<a class="nav-link" aria-current="page" href="/">Home</a>
+        		</li>
+        		<li class="nav-item">
+          			<a class="nav-link active" href="/Menu">Menu</a>
+        		</li>
+        		<li class="nav-item">
+          			<a class="nav-link" href="#">About</a>
+        		</li>
+        		<li class="nav-item">
+          			<a class="nav-link" href="#">My Cart</a>
+        		</li>
+        		<li class="nav-item dropdown">
+          			<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+          			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown01">
+            			<li><a class="dropdown-item" href="#">My Account</a></li>
+            			<li><a class="dropdown-item" href="#">My Purchase</a></li>
+            			<li><a class="dropdown-item" href="#">Log Out</a></li>
+          			</ul>
+        		</li>
+      		</ul>
+    	</div>
+		</div>
+	</nav>
+
+<!-- Slice Bar -->  
+<div class="sidenav">
+ 
+  <a href="#contact">Recommend Menu</a>
+  <button class="dropdown-btn">Crepe 
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="#">Hot Crepe</a>
+    <a href="#">Cool Crepe</a>
+  </div>
+</div>
+
+<!-- Infomation  -->
+<div class="main">
+  <h2>Sidebar Dropdown</h2>
+  <p>Click on the dropdown button to open the dropdown menu inside the side navigation.</p>
+  <p>This sidebar is of full height (100%) and always shown.</p>
+  <p>Some random text..</p>
+  <h2>Sidebar Dropdown</h2>
+
+</div>
+
+</body>
+</html>
+<script>
+	(function () {
+	  'use strict'
+
+	  document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+	    document.querySelector('.offcanvas-collapse').classList.toggle('open')
+	  })
+	})()
+	
+		var dropdown = document.getElementsByClassName("dropdown-btn");
+	var i;
+	
+	for (i = 0; i < dropdown.length; i++) {
+	  dropdown[i].addEventListener("click", function() {
+	  this.classList.toggle("active");
+	  var dropdownContent = this.nextElementSibling;
+	  if (dropdownContent.style.display === "block") {
+	  dropdownContent.style.display = "none";
+	  } else {
+	  dropdownContent.style.display = "block";
+	  }
+	  });
+	}
+</script>
+

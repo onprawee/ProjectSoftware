@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Cart</title>
+	
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+   
+   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<!-- CSS -->
+	<link th:href="@{/css/home.css}" rel="stylesheet" />
+	<link th:href="@{/css/account.css}" rel="stylesheet" />
+	<link th:href="@{/css/purchase.css}" rel="stylesheet" />
+
+	<style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    
+</head>
+<body>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- NAV BAR ^ ^  -->
+    <nav class="navbar navbar-expand-lg fixed-top " style="background-color:#f0e3ce" aria-label="Main navigation">
+    	<!-- LOGO -->
+  		<div class="container-fluid">
+  		<!-- <div class="container-xl"> -->
+  			<a class="navbar-brand" href="#">
+      			<img th:src="@{/img/Logo_new.png}" width="50px" height="50px" class="d-inline-block align-top" alt="">
+   			 </a>
+    	<button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+      		<span class="navbar-toggler-icon"></span>
+    	</button>
+    	
+    	<!-- Menu -->
+     	<!-- <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault"> -->
+     	<div class="topnav-right offcanvas-collapse" id="navbarsExampleDefault">
+      		<ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navbar">
+        		<li class="nav-item">
+          			<a class="nav-link " aria-current="page" href="/">Home</a>
+        		</li>
+        		<li class="nav-item">
+          			<a class="nav-link" href="/Menu">Menu</a>
+        		</li>
+        		<li class="nav-item">
+          			<a class="nav-link " href="/About">About</a>
+        		</li>
+        		<li class="nav-item">
+          			<a class="nav-link " href="/Cart">My Cart</a>
+        		</li>
+        		<li class="nav-item dropdown">
+          			<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+          			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown01">
+            			<li><a class="dropdown-item active" href="/Account">My Account</a></li>
+            			<li><a class="dropdown-item" href="#">My Purchase</a></li>
+            			<li><a class="dropdown-item" href="#">Log Out</a></li>
+          			</ul>
+        		</li>
+      		</ul>
+    	</div>
+		</div>
+	</nav>
+	<!-- Account -->
+	<div class="container light-style flex-grow-1 container-p-y">
+    <h4 class="font-weight-bold py-3 mb-4">
+      Account settings
+    </h4>
+
+    <div class="card overflow-hidden">
+      <div class="row no-gutters row-bordered row-border-light">
+        <div class="col-md-3 pt-0">
+          <div class="list-group list-group-flush account-settings-links">
+            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account">My Account</a>
+            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-purchase">My Purchase</a>
+            
+            <!-- logout -->
+   <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="list-group-item list-group-item-action" a href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+                </li>
+            </ul>
+			<!-- Small modal -->
+  <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+			<h4>Log Out <i class="fa fa-lock"></i></h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <p><i class="fa fa-question-circle"></i> ต้องการออกจากระบบ <br /></p>
+          <div class="actionsBtns">
+              <form action="/logout" method="post">
+                  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                  <input type="submit" class="btn btn-default btn-primary" data-dismiss="modal" value="Logout" />
+                      <button class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+   
+          </div>
+        </div>
+        <!-- Start account-->
+        <div class="col-md-9">
+          <div class="tab-content">
+            <div class="tab-pane fade active show" id="account">
+
+              <div class="card-body media align-items-center">
+                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="d-block ui-w-80">
+                <div class="media-body ml-4">
+                  <label class="btn btn-outline-primary">
+                    Upload new photo
+                    <input type="file" class="account-settings-fileinput">
+                  </label> &nbsp;
+                  <button type="button" class="btn btn-default md-btn-flat">Reset</button>
+
+                  <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                </div>
+              </div>
+              <hr class="border-light m-0">
+
+              <div class="card-body">
+                <div class="form-group">
+                  <label class="form-label">Username</label>
+                  <input type="text" class="form-control mb-1" value="nmaxwell">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Name</label>
+                  <input type="text" class="form-control" value="Nelle Maxwell">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">TelePhone</label>
+                  <input type="text" class="form-control mb-1" value="nmaxwell@mail.com">
+                  
+                </div>
+               
+              </div>
+            </div>
+
+            <!-- End Account-->
+
+            <!-- Start chang password -->
+            <div class="tab-pane fade" id="account-purchase">
+              <div class="card-body pb-2">
+                <button type="button" class="btn btn-primary launch" id="btnlan" data-toggle="modal" data-target="#staticBackdrop"> <i class="fa fa-info"></i> Ordered list
+                </button>
+                <!-- Pop up -->
+                <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body ">
+                                <div class="text-right"> <i class="fa fa-close close" data-dismiss="modal"></i> </div>
+                                <div class="px-4 py-5">
+                                    <h5 class="text-uppercase">Jonathan Adler</h5>
+                                    <h4 class="mt-5 theme-color mb-5">Thanks for your order</h4> <span class="theme-color">Payment Summary</span>
+                                    <div class="mb-3">
+                                        <hr class="new1">
+                                    </div>
+                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Ether Chair(Qty:1)</span> <span class="text-muted">$1750.00</span> </div>
+                                    <div class="d-flex justify-content-between"> <small>Shipping</small> <small>$175.00</small> </div>
+                                    <div class="d-flex justify-content-between"> <small>Tax</small> <small>$200.00</small> </div>
+                                    <div class="d-flex justify-content-between mt-3"> <span class="font-weight-bold">Total</span> <span class="font-weight-bold theme-color">$2125.00</span> </div>
+                                    <div class="text-center mt-5"> <button class="btn btn-primary">Track your order</button> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              </div>
+            </div>
+           
+            <!-- จะอยู่ส่วนท้ายของทุกหน้า-->
+              <div class="card-body pb-2">
+                <h6 class="mb-4">Application</h6>
+
+                <div class="form-group">
+                  <label class="switcher">
+                    <input type="checkbox" class="switcher-input" checked="">
+                    <span class="switcher-indicator">
+                      <span class="switcher-yes"></span>
+                      <span class="switcher-no"></span>
+                    </span>
+                    <span class="switcher-label">News and announcements</span>
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label class="switcher">
+                    <input type="checkbox" class="switcher-input">
+                    <span class="switcher-indicator">
+                      <span class="switcher-yes"></span>
+                      <span class="switcher-no"></span>
+                    </span>
+                    <span class="switcher-label">Weekly product updates</span>
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label class="switcher">
+                    <input type="checkbox" class="switcher-input" checked="">
+                    <span class="switcher-indicator">
+                      <span class="switcher-yes"></span>
+                      <span class="switcher-no"></span>
+                    </span>
+                    <span class="switcher-label">Weekly blog digest</span>
+                  </label>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+	
+  	
+</body>
+</html>
+

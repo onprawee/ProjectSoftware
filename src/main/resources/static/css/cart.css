@@ -1,0 +1,149 @@
+body {
+    background-color: #eeeeee
+}
+
+.footer-background {
+    background-color: rgb(204, 199, 199)
+}
+
+@media(max-width:991px) {
+    #heading {
+        padding-left: 50px
+    }
+
+    #prc {
+        margin-left: 70px;
+        padding-left: 110px
+    }
+
+    #quantity {
+        padding-left: 48px
+    }
+
+    #produc {
+        padding-left: 40px
+    }
+
+    #total {
+        padding-left: 54px
+    }
+}
+
+@media(max-width:767px) {
+    .mobile {
+        font-size: 10px
+    }
+
+    h5 {
+        font-size: 14px
+    }
+
+    h6 {
+        font-size: 9px
+    }
+
+    #mobile-font {
+        font-size: 11px
+    }
+
+    #prc {
+        font-weight: 700;
+        margin-left: -45px;
+        padding-left: 105px
+    }
+
+    #quantity {
+        font-weight: 700;
+        padding-left: 6px
+    }
+
+    #produc {
+        font-weight: 700;
+        padding-left: 0px
+    }
+
+    #total {
+        font-weight: 700;
+        padding-left: 9px
+    }
+
+    #image {
+        width: 60px;
+        height: 60px
+    }
+
+    .col {
+        width: 100%
+    }
+
+    #zero-pad {
+        padding: 2%;
+        margin-left: 10px
+    }
+
+    #footer-font {
+        font-size: 12px
+    }
+
+    #heading {
+        padding-top: 15px
+    }
+}
+
+/* -- quantity box -- */
+/* ออกแบบตรงข่องจำนวนสินค้าค่ะพส */
+
+.quantity {
+    display: inline-block; }
+   
+   .quantity .input-text.qty {
+    width: 35px;
+    height: 39px;
+    padding: 0 5px;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #efefef;
+   }
+   
+   .quantity.buttons_added {
+    text-align: left;
+    position: relative;
+    white-space: nowrap;
+    vertical-align: top; }
+   
+   .quantity.buttons_added input {
+    display: inline-block;
+    margin: 0;
+    vertical-align: top;
+    box-shadow: none;
+   }
+   
+   .quantity.buttons_added .minus,
+   .quantity.buttons_added .plus {
+    padding: 7px 10px 8px;
+    height: 41px;
+    background-color: #ffffff;
+    border: 1px solid #efefef;
+    cursor:pointer;}
+   
+   .quantity.buttons_added .minus {
+    border-right: 0; }
+   
+   .quantity.buttons_added .plus {
+    border-left: 0; }
+   
+   .quantity.buttons_added .minus:hover,
+   .quantity.buttons_added .plus:hover {
+    background: #eeeeee; }
+   
+   .quantity input::-webkit-outer-spin-button,
+   .quantity input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0; }
+    
+    .quantity.buttons_added .minus:focus,
+   .quantity.buttons_added .plus:focus {
+    outline: none; }
+   
+   

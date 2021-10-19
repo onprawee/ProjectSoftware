@@ -48,7 +48,7 @@
     	<!-- LOGO -->
   		<div class="container-fluid">
   		<!-- <div class="container-xl"> -->
-  			<a class="navbar-brand" href="#">
+  			<a class="navbar-brand" href="/Home">
       			<img th:src="@{/img/Logo_new.png}" width="50px" height="50px" class="d-inline-block align-top" alt="">
    			 </a>
     	<button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
@@ -60,23 +60,22 @@
      	<div class="topnav-right offcanvas-collapse" id="navbarsExampleDefault">
       		<ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navbar">
         		<li class="nav-item">
-          			<a class="nav-link " aria-current="page" href="/">Home</a>
+          			<a class="nav-link " aria-current="page" href="/Home">หน้าหลัก</a>
         		</li>
         		<li class="nav-item">
-          			<a class="nav-link" href="/Menu">Menu</a>
+          			<a class="nav-link" href="/Menu">เมนู</a>
         		</li>
         		<li class="nav-item">
-          			<a class="nav-link " href="/About">About</a>
+          			<a class="nav-link" href="/About">เกี่ยวกับร้าน</a>
         		</li>
         		<li class="nav-item">
-          			<a class="nav-link " href="/Cart">My Cart</a>
+          			<a class="nav-link" href="/Cart">ตะกร้าของฉัน</a>
         		</li>
         		<li class="nav-item dropdown">
-          			<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+          			<a class="nav-link dropdown-toggle active" href="/Account" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
           			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown01">
-            			<li><a class="dropdown-item active" href="/Account">My Account</a></li>
-            			<li><a class="dropdown-item" href="#">My Purchase</a></li>
-            			<li><a class="dropdown-item" href="#">Log Out</a></li>
+            			<li><a class="dropdown-item" href="/Account">บัญชีของฉัน</a></li>
+            			<li><a class="dropdown-item" href="/Account">การซื้อของฉัน</a></li>
           			</ul>
         		</li>
       		</ul>
@@ -95,15 +94,14 @@
           <div class="list-group list-group-flush account-settings-links">
             <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account">My Account</a>
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-purchase">My Purchase</a>
-            
             <!-- logout -->
-   <ul class="nav navbar-nav navbar-right">
+  			<ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="list-group-item list-group-item-action" a href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+	              	<a class="list-group-item list-group-item-action" a href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
                 </li>
             </ul>
 			<!-- Small modal -->
-  <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+ 	<div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
@@ -113,9 +111,9 @@
         <div class="modal-body">
           <p><i class="fa fa-question-circle"></i> ต้องการออกจากระบบ <br /></p>
           <div class="actionsBtns">
-              <form action="/logout" method="post">
+              <form th:action="@{/logout}" method="post">
                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                  <input type="submit" class="btn btn-default btn-primary" data-dismiss="modal" value="Logout" />
+                  <input type="submit" class="btn btn-default btn-primary" value="Sign Out" />
                       <button class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
               </form>
           </div>
@@ -131,33 +129,11 @@
           <div class="tab-content">
             <div class="tab-pane fade active show" id="account">
 
-              <div class="card-body media align-items-center">
-                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="d-block ui-w-80">
-                <div class="media-body ml-4">
-                  <label class="btn btn-outline-primary">
-                    Upload new photo
-                    <input type="file" class="account-settings-fileinput">
-                  </label> &nbsp;
-                  <button type="button" class="btn btn-default md-btn-flat">Reset</button>
-
-                  <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
-                </div>
-              </div>
-              <hr class="border-light m-0">
-
               <div class="card-body">
                 <div class="form-group">
-                  <label class="form-label">Username</label>
-                  <input type="text" class="form-control mb-1" value="nmaxwell">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Name</label>
-                  <input type="text" class="form-control" value="Nelle Maxwell">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">TelePhone</label>
-                  <input type="text" class="form-control mb-1" value="nmaxwell@mail.com">
-                  
+                     <p>
+                		Welcome <b>[[${#request.userPrincipal.principal.username}]]</b>
+           			 </p>
                 </div>
                
               </div>
@@ -195,43 +171,7 @@
 
               </div>
             </div>
-           
-            <!-- จะอยู่ส่วนท้ายของทุกหน้า-->
-              <div class="card-body pb-2">
-                <h6 class="mb-4">Application</h6>
-
-                <div class="form-group">
-                  <label class="switcher">
-                    <input type="checkbox" class="switcher-input" checked="">
-                    <span class="switcher-indicator">
-                      <span class="switcher-yes"></span>
-                      <span class="switcher-no"></span>
-                    </span>
-                    <span class="switcher-label">News and announcements</span>
-                  </label>
-                </div>
-                <div class="form-group">
-                  <label class="switcher">
-                    <input type="checkbox" class="switcher-input">
-                    <span class="switcher-indicator">
-                      <span class="switcher-yes"></span>
-                      <span class="switcher-no"></span>
-                    </span>
-                    <span class="switcher-label">Weekly product updates</span>
-                  </label>
-                </div>
-                <div class="form-group">
-                  <label class="switcher">
-                    <input type="checkbox" class="switcher-input" checked="">
-                    <span class="switcher-indicator">
-                      <span class="switcher-yes"></span>
-                      <span class="switcher-no"></span>
-                    </span>
-                    <span class="switcher-label">Weekly blog digest</span>
-                  </label>
-                </div>
-
-              </div>
+          
             </div>
           </div>
         </div>

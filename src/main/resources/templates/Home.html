@@ -26,22 +26,17 @@
           font-size: 3.5rem;
         }
       }
-      .bg-dark{
-	 background-color: #f0e3ce  !important;
-	 
-}
-      
     </style>
     
 </head>
 <body>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- NAV BAR ^ ^  -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark " aria-label="Main navigation">
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color:#f0e3ce" aria-label="Main navigation">
     	<!-- LOGO -->
   		<div class="container-fluid">
   		<!-- <div class="container-xl"> -->
-  			<a class="navbar-brand" href="#">
+  			<a class="navbar-brand" href="/Home">
       			<img th:src="@{/img/Logo_new.png}" width="50px" height="50px" class="d-inline-block align-top" alt="">
    			 </a>
     	<button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
@@ -53,23 +48,23 @@
      	<div class="topnav-right offcanvas-collapse" id="navbarsExampleDefault">
       		<ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navbar">
         		<li class="nav-item">
-          			<a class="nav-link active" aria-current="page" href="/Home">Home</a>
+          			<a class="nav-link active" aria-current="page" href="/Home">หน้าหลัก</a>
         		</li>
         		<li class="nav-item">
-          			<a class="nav-link" href="/Menu">Menu</a>
+          			<a class="nav-link" href="/Menu">เมนู</a>
         		</li>
         		<li class="nav-item">
-          			<a class="nav-link" href="/About">About</a>
+          			<a class="nav-link" href="/About">เกี่ยวกับร้าน</a>
         		</li>
         		<li class="nav-item">
-          			<a class="nav-link" href="/Cart">My Cart</a>
+          			<a class="nav-link" href="/Cart">ตะกร้าของฉัน</a>
         		</li>
         		<li class="nav-item dropdown">
-          			<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+          			<a class="nav-link dropdown-toggle" href="/Account" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
           			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown01">
-            			<li><a class="dropdown-item" href="/Account">My Account</a></li>
-            			<li><a class="dropdown-item" href="/Account">My Purchase</a></li>
-            			<li><a class="dropdown-item" href="/">Log Out</a></li>
+            			<li><a class="dropdown-item" href="/Account">บัญชีของฉัน</a></li>
+            			<li><a class="dropdown-item" href="/Account">การซื้อของฉัน</a></li>
+            			
           			</ul>
         		</li>
       		</ul>
@@ -87,7 +82,8 @@
     	</div>
     	<div class="carousel-inner">
       		<div class="carousel-item active">
-        		<img class="d-block w-90" src="/img/ร้าน.jpg" alt="First slide">
+
+        		<img class="d-block w-90" th:src="@{/img/menu4_milk.jpg}" alt="First slide">
         	<div class="container">
           		<div class="carousel-caption text-start">
             		<h1>1</h1>
@@ -99,7 +95,7 @@
       		
       		<!-- Picture 2 -->
       		<div class="carousel-item">
-        		<img class="d-block w-90" src="/img/ร้าน.jpg" alt="Slide 2">
+        		<img class="d-block w-90" th:src="@{/img/menu1_pick.jpg}" alt="Slide 2">
       		<div class="container">
           		<div class="carousel-caption text-start">
             		<h1>2</h1>
@@ -110,7 +106,7 @@
         	
       		<!-- Picture 3 -->
      		<div class="carousel-item">
-       	 		<img class="d-block w-90" src="/img/ร้าน.jpg" alt="Slice 3">
+       	 		<img class="d-block w-90" th:src="@{/img/menu2_ham.jpg}" alt="Slice 3">
         	
         	<div class="container">
           		<div class="carousel-caption text-start">
@@ -120,17 +116,6 @@
           	</div>
         	</div>
         	
-        	<!-- Picture 4 -->
-        	<div class="carousel-item">
-       	 		<img class="d-block w-90" src="/img/ร้าน.jpg" alt="Slice 4">
-        	
-        	        	<div class="container">
-          		<div class="carousel-caption text-start">
-            		<h1>4</h1>
-           	 		<p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-          		</div>
-          	</div>
-          	</div>
        
     	</div>
     	<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">

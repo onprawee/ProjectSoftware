@@ -42,7 +42,7 @@
     	<!-- LOGO -->
   		<div class="container-fluid">
   		<!-- <div class="container-xl"> -->
-  			<a class="navbar-brand" href="#">
+  			<a class="navbar-brand" href="/Home">
       			<img th:src="@{/img/Logo_new.png}" width="50px" height="50px" class="d-inline-block align-top" alt="">
    			 </a>
     	<button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
@@ -54,23 +54,23 @@
      	<div class="topnav-right offcanvas-collapse" id="navbarsExampleDefault">
       		<ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navbar">
         		<li class="nav-item">
-          			<a class="nav-link " aria-current="page" href="/">Home</a>
+          			<a class="nav-link " aria-current="page" href="/Home">หน้าหลัก</a>
         		</li>
         		<li class="nav-item">
-          			<a class="nav-link" href="/Menu">Menu</a>
+          			<a class="nav-link" href="/Menu">เมนู</a>
         		</li>
         		<li class="nav-item">
-          			<a class="nav-link active" href="/About">About</a>
+          			<a class="nav-link active" href="/About">เกี่ยวกับร้าน</a>
         		</li>
         		<li class="nav-item">
-          			<a class="nav-link " href="/Cart">My Cart</a>
+          			<a class="nav-link" href="/Cart">ตะกร้าของฉัน</a>
         		</li>
         		<li class="nav-item dropdown">
-          			<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+          			<a class="nav-link dropdown-toggle" href="/Account" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
           			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown01">
-            			<li><a class="dropdown-item" href="/Account">My Account</a></li>
-            			<li><a class="dropdown-item" href="#">My Purchase</a></li>
-            			<li><a class="dropdown-item" href="#">Log Out</a></li>
+            			<li><a class="dropdown-item" href="/Account">บัญชีของฉัน</a></li>
+            			<li><a class="dropdown-item" href="/Account">การซื้อของฉัน</a></li>
+            			
           			</ul>
         		</li>
       		</ul>
@@ -79,44 +79,38 @@
 	</nav>
 	<!-- About -->
 	<div class="container marketing mt-5">
-
-    <!-- Three columns of text below the carousel -->
     
-    <!-- START THE FEATURETTES -->
-    <div class="title">
-    <h1>Marie Crepe เครปคุณมารีย์</h1>
-    </div>
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2 ">
-        <h2 class="featurette-heading ">About Me </h2>
-        <p class="lead">เพื่อให้ลูกค้าดื่มด่ำไปกับโลกของหวาน 
-            เครปมารีย์ยินดีบริการลูกค้าอย่างเต็มที่</p>
-      </div>
-      <div class="col-md-5 order-md-1" >
-        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto " width="500" height="500" src="img/ร้าน.jpg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" /></img>
-
-      </div>
-    </div>
-    
-        <div class="row" id="crepe">
-            <div class="col-lg-4">
-              <img class="bd-placeholder-img rounded-circle" width="120" height="120" src="/img/crepe (1).png" >
-      
-              <h3>แป้งทำสดใหม่ทุกเช้า</h4>
-              
-              
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <img class=" bd-placeholder-img rounded-circle " width="120" height="120" src="/img/crepe (2).png" >
-                <h3>10+ ตัวเลือกไส้</h3>
-                
-                
-              </div><!-- /.col-lg-4 -->
-              
-        
-    </div>
+	    <!-- START THE FEATURETTES -->
+	    <div class="title">
+	    	<h1>Marie Crepe เครปคุณมารีย์</h1>
+	    </div>
+	    <div class="row featurette">
+		      <div class="col-md-7 order-md-2 ">
+		        <h2 class="featurette-heading ">About Me </h2>
+		        <p class="lead">เพื่อให้ลูกค้าดื่มด่ำไปกับโลกของหวาน เครปมารีย์ยินดีบริการลูกค้าอย่างเต็มที่ </p>
+		     </div>
+		     <div class="col-md-5 order-md-1" >
+		        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto " width="500" height="500" src="img/ร้าน.jpg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" /></img>
+		     </div>
+	    </div>
+	    
+	    <div class="row" id="crepe">
+		      <div class="col-lg-4">
+		          <img class="bd-placeholder-img rounded-circle" width="120" height="120" src="/img/crepe (1).png" >    
+		          <h3>แป้งทำสดใหม่ทุกเช้า</h3>
+		      </div>
+		      <!-- /.col-lg-4 -->
+		      
+		      <div class="col-lg-4">
+		          <img class=" bd-placeholder-img rounded-circle " width="120" height="120" src="/img/crepe (2).png" >
+		          <h3>10+ ตัวเลือกไส้</h3>
+		      </div>
+	      	  <!-- /.col-lg-4 --> 
+	    </div>
+	 </div>
 
     <hr class="featurette-divider">
+   
   	
 </body>
 </html>

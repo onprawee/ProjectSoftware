@@ -1,13 +1,15 @@
 package com.example.demo;
 
-import javax.persistence.CascadeType;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class User {
@@ -25,17 +27,17 @@ public class User {
 	 @Column(nullable = false, length = 64)
 	 private String phone;
 	 
-	 //One_To_One
-	 @OneToOne(mappedBy = "user" , cascade = CascadeType.ALL)
-	 @PrimaryKeyJoinColumn
-	 private Cart cart;
+	 //OneToMany
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
+	private List<Cart> carts;
 
-	public Cart getCart() {
-		return cart;
+//Getter - Setter
+	public List<Cart> getCarts() {
+		return carts;
 	}
 
-	public void setCart(Cart cart) {
-		this.cart = cart;
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
 	}
 
 	public Integer getId() {

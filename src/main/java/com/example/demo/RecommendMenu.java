@@ -1,9 +1,13 @@
 package com.example.demo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class RecommendMenu {
@@ -13,13 +17,16 @@ public class RecommendMenu {
 	private Integer id;
 	private String name;
 	private String img_url;
-	private String price;
+	private double price;
 	
 	@Override
 		public String toString() {
 			return "RecommendMenu [ name=" + name + "img=" + img_url + "price" + price + "]";
 		}
 
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "recommendmenu")
+	private List<Cart> carts;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -44,16 +51,23 @@ public class RecommendMenu {
 		this.img_url = img_url;
 	}
 
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public List<Cart> getCarts() {
+		return carts;
+	}
+
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
 	}
 
 	
 
-	
-	
+
 }

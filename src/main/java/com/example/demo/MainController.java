@@ -1,7 +1,5 @@
 package com.example.demo;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	
 	@Autowired
-	private RecommendmenuRepository recommendmenurepository;
+	RecommendmenuRepository recommendmenurepository;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -73,12 +71,6 @@ public class MainController {
 		return "Hotcrepe";
 	}
 	//---------------------------------------------------
-	@GetMapping("/Cart")
-	  public String  showcart(Model model) {
-		//-
-
-		return "cart";
-	}
 	@GetMapping("/About")
 	  public String  showabout(Model model) {
 		//-

@@ -1,7 +1,10 @@
 package com.example.demo;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RecommendmenuRepository extends CrudRepository<RecommendMenu, Integer>{
+
+@Repository
+public interface RecommendmenuRepository extends JpaRepository<RecommendMenu, Integer>{
 
 }

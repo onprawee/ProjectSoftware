@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class MainController {
 	
 	@Autowired
 	RecommendmenuRepository recommendmenurepository;
+	
+	@Autowired
+	private CustomerUserDetailsService userServices;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -50,9 +54,7 @@ public class MainController {
 	}
 	
 	@GetMapping("/")
-	  public String  showHome(Model model) {
-		//-
-		
+	  public String showHome(Model model) {
 		
 		return "Home";
 	}

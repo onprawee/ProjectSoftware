@@ -59,10 +59,6 @@ public class Cart {
 	}
 
 
-	/*
-	 * public Cart(RecommendMenu recommendmenu, int quantity,User user) { this.user
-	 * = user; this.recommendmenu = recommendmenu; this.quantity = quantity; }
-	 */
 	
 	
 }

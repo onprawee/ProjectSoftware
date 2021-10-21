@@ -24,14 +24,18 @@ public class CustomerUserDetailsService implements UserDetailsService {
 	}
 	
 	public User getCurrentlyLoggedInCustomer(Authentication authentication) {
-		if(authentication == null) return null;
+		if(authentication == null) {
+			return null;
+		}
 		
 		User user = null;
 		Object principal = authentication.getPrincipal();
 		
 		if(principal instanceof CustomerUserDetails) {
 			user = ((CustomerUserDetails)principal).getUser();
-			
+		}else if (principal instanceof User) {
+			String username = ((User) principal).getUsername();
+			user = userRepository.findByUsername(username);
 		}
 	
 		return user;

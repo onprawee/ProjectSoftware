@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
 	<title>Cart</title>
@@ -9,10 +9,9 @@
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
-    <script th:src="@{/js/cart.js}"></script>
-   
-
-	<!-- CSS -->
+    <!-- JS -->
+    <script th:src="@{/js/quantity.js}"></script>
+   	<!-- CSS -->
 	<link th:href="@{/css/home.css}" rel="stylesheet" />
 	<link th:href="@{/css/cart.css}" rel="stylesheet" />
 
@@ -36,7 +35,7 @@
 <body>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- NAV BAR ^ ^  -->
-    <nav class="navbar navbar-expand-lg fixed-top "style="background-color:#f0e3ce" aria-label="Main navigation">
+     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
     	<!-- LOGO -->
   		<div class="container-fluid">
   		<!-- <div class="container-xl"> -->
@@ -52,7 +51,7 @@
      	<div class="topnav-right offcanvas-collapse" id="navbarsExampleDefault">
       		<ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navbar">
         		<li class="nav-item">
-          			<a class="nav-link active" aria-current="page" href="/">หน้าหลัก</a>
+          			<a class="nav-link" aria-current="page" href="/">หน้าหลัก</a>
         		</li>
         		<li class="nav-item">
           			<a class="nav-link" href="/Menu">เมนู</a>
@@ -61,7 +60,7 @@
           			<a class="nav-link" href="/About">เกี่ยวกับร้าน</a>
         		</li>
         		<li class="nav-item">
-          			<a class="nav-link" href="/Cart">ตะกร้าของฉัน</a>
+          			<a class="nav-link active" href="/Cart">ตะกร้าของฉัน</a>
         		</li>
         		<li class="nav-item dropdown">
           			<a class="nav-link dropdown-toggle" href="/Account" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
@@ -81,67 +80,78 @@
             <div class="col-lg-10 col-12 pt-3">
                 <div class="d-flex">
                     <div class="pt-1">
-                        <h4>Order List</h4>
-                        <b>[[${#request.userPrincipal.principal.username}]]</b>
+                        <h2>[[${#request.userPrincipal.principal.username}]] Cart</h2>       
                     </div>
                     </div>
                      <div class="d-flex flex-column pt-4">
-                    <div>
-                        <h5 class="text-uppercase font-weight-normal">My Cart</h5>
-                    </div>
-                    <div class="font-weight-normal">2 items</div>
-                </div>
-                <div class="d-flex flex-row px-lg-5 mx-lg-5 mobile" id="heading">
-                    <div class="px-lg-5 mr-lg-5" id="produc">PRODUCTS</div>
-                    <div class="px-lg-5 ml-lg-5" id="prc">PRICE</div>
-                    <div class="px-lg-5 ml-lg-1" id="quantity">QUANTITY</div>
-                    <div class="px-lg-5 ml-lg-3" id="total">TOTAL</div>
-                </div>
+                         <!-- IF Cart empty -->
+				    	<div th:if="${#lists.isEmpty(cartItems)}">
+				    		<h3 class="justify-content-center">You have not chosen any order yet.</h3>
+				   		</div>
+                	</div>
                 <!--Show Order !! -->
                 <th:block th:each="item, status : ${cartItems}">
-                <div class="d-flex flex-row justify-content-between align-items-center pt-lg-4 pt-2 pb-3 border-bottom mobile" th:with="menu = ${item.recommendmenu}">
-                	
-                    <div class="d-flex flex-row align-items-center">
-                        <div>
-                        	<img th:src="${menu.img_url}" width="150" height="150" alt="" id="image"></div>
-                        <div class="d-flex flex-column pl-md-3 pl-1">
-                            <div>
-                            	
-                                <h6 th:text="${menu.name}"></h6>
-                            </div>
-                            <div>Art.No:<span class="pl-2">091091001</span></div>
-                            <div>Color:<span class="pl-3">White</span></div>
-                            <div>Size:<span class="pl-4"> M</span></div>
-                        </div>
-                    </div>
-                    <div class="pl-md-0 pl-1"><b>$9.99</b></div>
-                     <!-- จำนวนสินค้า -->
-                     <div class="quantity buttons_added">
-                        <input type="button" value="-" class="minus"><input type="number" step="1" min="1" max="" 
-                        name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
-                        <input type="button" value="+" class="plus">
-                    </div>
-                    <!-- ----------------------------------- -->
-
-                    <div class="pl-md-0 pl-1"><b>$19.98</b></div>
-                    <div class="close">&times;</div>
-                    
+                <div class="container mt-2" th:with="menu = ${item.recommendmenu}">
+                 
+                    <div>
+                    	<table class="table table-borderless table-responsive ">
+							  <thead>
+							    <tr>
+							    	<th scope="col" ><div class="ml-2" id="img"></div></th>
+							      	<th scope="col" width="45%"><div class="ml-2"  id="produc">Order</div></th>
+							      	<th scope="col" width="1 5%"><div  id="prc">PRICE</div></th>
+							      	<th scope="col"><div  id="quantity">QUANTITY</div></th>
+							      	<th scope="col"><div  id="total">TOTAL</div></th>
+							      	<th scope="col"><div  id="delete"></div></th>
+							    </tr>
+							    </thead>
+							  <tbody>
+							    <tr>
+							      	<th scope="row">
+								      	<div>
+	                        				<img th:src="${menu.img_url}" width="120" height="120" alt="" id="image">
+	                        			</div>
+                        			</th>
+							      	<td><div th:text="${menu.name}" class="p-2" ></div></td>
+							      	<td><div><b th:text="${menu.price}"></b></div></td>
+							      	<td>
+							      		<div th:replace="quantity_control :: quantity_control(${item.quantity}, ${menu.id})">Quantity</div>				
+                    			  	</td>
+                    			  	<td>
+                    			  		<div><b>[Subtotal]</b></div>
+                    			  	</td>
+	                    			<td>
+	                    				<div class="close">&times;</div>
+	                    			</td>
+							    </tr>
+							    
+							  </tbody>
+						</table>
+                </div>
                 </div>
                 </th:block>
             </div>
+         
         </div>
+      
     </div>
-    <div class="container bg-light rounded-bottom py-4" id="zero-pad">
+    
+    <div class="container bg-light rounded-bottom py-4" id="zero-pad" th:unless="${#lists.isEmpty(cartItems)}">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-10 col-12">
                 <div class="d-flex justify-content-between align-items-center">
                     <div> <button class="btn btn-sm bg-light border border-dark">GO BACK</button> </div>
-                    <div class="px-md-0 px-1" id="footer-font"> <b class="pl-md-4">SUBTOTAL<span class="pl-md-4">$61.78</span></b> </div>
-                    <div> <button class="btn btn-sm bg-dark text-white px-lg-5 px-3">CONTINUE</button> </div>
+                    <div class="px-md-0 px-1" id="footer-font"> 
+                    	<b class="pl-md-4">SUBTOTAL<span class="pl-md-4">[Total Amount]</span></b> 
+                    </div>
+                    <div> <button class="btn btn-sm bg-dark text-white px-lg-5 px-3">Check Out</button> </div>
                 </div>
             </div>
         </div>
     </div>
+    
+
+    
   	
 </body>
 </html>

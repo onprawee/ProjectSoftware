@@ -19,12 +19,11 @@ public class MainController {
 	
 	@Autowired
 	RecommendmenuRepository recommendmenurepository;
-	
-	@Autowired
-	private CustomerUserDetailsService userServices;
-	
+
 	@Autowired
 	private UserRepository userRepository;
+	
+	
 	
 	
 	@RequestMapping("/Login")
@@ -66,12 +65,7 @@ public class MainController {
 		model.addAttribute("recommend",recommend);
 	      return "Menu";
 	  }
-	@GetMapping("/Hotcrepe")
-	  public String  showhotcrepe(Model model) {
-		//-
 
-		return "Hotcrepe";
-	}
 	//---------------------------------------------------
 	@GetMapping("/About")
 	  public String  showabout(Model model) {
@@ -79,12 +73,16 @@ public class MainController {
 
 		return "About";
 	}
+	
 	@GetMapping("/Account")
 	  public String  showAccount(Model model) {
 		//-
 
 		return "Account";
 	}
+	
+	//------------------------------------------------------------
+
 	
 
 

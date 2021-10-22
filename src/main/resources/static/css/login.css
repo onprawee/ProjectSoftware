@@ -52,8 +52,8 @@ body {
     width: 300px;
     border-color: #2ecc71
 }
-/* ปุ่มloginกับregister */
-.box input[type="submit"] {
+/* à¸›à¸¸à¹ˆà¸¡loginà¸�à¸±à¸šregister */
+.box input[type="submit"], .box input[type="button"] {
     border: 0;
     background: none;
     margin: 20px;
@@ -67,7 +67,7 @@ body {
     cursor: pointer
 }
 
-.box input[type="submit"]:hover {
+.box input[type="submit"]:hover, .box input[type="button"]:hover {
     background: #2ecc71
 }
 

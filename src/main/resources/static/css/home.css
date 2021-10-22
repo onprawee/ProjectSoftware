@@ -2,7 +2,6 @@ html,body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 
-
 body {
   padding-top: 56px;
 }
@@ -33,15 +32,13 @@ body {
 /* Nav Bar Right align*/
 .topnav-right {
  	float: right;
- 	
 }
 /*----------------------------------*/
 
 /* On mouse-over */
-
-/* .sidenav a:hover, .dropdown-btn:hover {
+.sidenav a:hover, .dropdown-btn:hover {
   color: #f1f1f1;
-}*/
+}
 
 /* Carousel base class */
 .carousel {

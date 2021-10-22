@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
 	<title>Cart</title>
@@ -38,7 +38,7 @@
 <body>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- NAV BAR ^ ^  -->
-    <nav class="navbar navbar-expand-lg fixed-top "style="background-color:#f0e3ce" aria-label="Main navigation">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
     	<!-- LOGO -->
   		<div class="container-fluid">
   		<!-- <div class="container-xl"> -->
@@ -54,13 +54,13 @@
      	<div class="topnav-right offcanvas-collapse" id="navbarsExampleDefault">
       		<ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navbar">
         		<li class="nav-item">
-          			<a class="nav-link active" aria-current="page" href="/">หน้าหลัก</a>
+          			<a class="nav-link" aria-current="page" href="/">หน้าหลัก</a>
         		</li>
         		<li class="nav-item">
           			<a class="nav-link" href="/Menu">เมนู</a>
         		</li>
         		<li class="nav-item">
-          			<a class="nav-link" href="/About">เกี่ยวกับร้าน</a>
+          			<a class="nav-link  active" href="/About">เกี่ยวกับร้าน</a>
         		</li>
         		<li class="nav-item">
           			<a class="nav-link" href="/Cart">ตะกร้าของฉัน</a>
@@ -96,14 +96,14 @@
 	    
 	    <div class="row" id="crepe">
 		      <div class="col-lg-4">
-		          <img class="bd-placeholder-img rounded-circle" width="120" height="120" src="/img/crepe (1).png" >    
+		          <img class="bd-placeholder-img rounded-circle" width="120" height="120" th:src="@{/img/crep1.png}" >    
 		          <h3>แป้งทำสดใหม่ทุกเช้า</h3>
 		      </div>
 		      <!-- /.col-lg-4 -->
 		      
 		      <div class="col-lg-4">
-		          <img class=" bd-placeholder-img rounded-circle " width="120" height="120" src="/img/crepe (2).png" >
-		          <h3>10+ ตัวเลือกไส้</h3>
+		          <img class=" bd-placeholder-img rounded-circle " width="120" height="120" th:src="@{/img/crepe2.png}">
+		          <h3>เมนูแนะนำแสนอร่อย</h3>
 		      </div>
 	      	  <!-- /.col-lg-4 --> 
 	    </div>

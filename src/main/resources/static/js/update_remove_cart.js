@@ -21,7 +21,7 @@ function decreaseQuantity(link){
 		newQty = parseInt(qtyInput.val()) - 1;
 		if(newQty <= 10){
 			qtyInput.val(newQty);
-			updateQuantity(menuId,quantity);
+			updateQuantity(menuId,qtyInput.val());
 		} 
 }
 // Plus
@@ -32,13 +32,14 @@ function increaseQuantity(link){
 		newQty = parseInt(qtyInput.val()) + 1;
 		if(newQty <= 10){
 			qtyInput.val(newQty);
-			updateQuantity(menuId,quantity);
+			updateQuantity(menuId,qtyInput.val());
 		}
 }
 // Update Quantity
 function updateQuantity(menuId,quantity){
-	//url = contextPath + "Cart/update/" + menuId + "/" + quantity;
-	url = link.attr("href");
+	url = contextPath + "Cart/update/" + menuId + "/" + quantity;
+	console.log(quantity);
+	//url = link.attr("href");
 	$.ajax({
 		type : "POST",
 		url: url,

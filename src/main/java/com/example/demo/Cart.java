@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Cart {
@@ -58,6 +59,10 @@ public class Cart {
 		this.quantity = quantity;
 	}
 
+	@Transient
+	public double getSubtotal() {
+		return this.recommendmenu.getPrice() * quantity;
+	}
 
 	
 	

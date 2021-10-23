@@ -17,16 +17,10 @@ function addToCart(menuId){
 		}
 	}).done(function(response){
 		console.log(response);
-		/*$("#modalTitle").Text("Cart");
-		$("#modalBady").Text("response");
-		$("#myModal").modal();*/
 		alert(response);
+		
 	}).fail(function(){
 		console.log("fail");
-		/*
-		$("#modalTitle").Text("Cart");
-		$("#modalBady").Text("Error while adding product to cart");
-		$("#myModal").modal();*/
 		alert("Fail");
 	})
 	

@@ -23,8 +23,11 @@ public class MainController {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+	private UserInfoRepository infoRepo;
 	
-	
+	@Autowired
+	private CustomerUserDetailsService userServices;
 	
 	@RequestMapping("/Login")
 	public String shoeLogin(Model model) {
@@ -39,16 +42,20 @@ public class MainController {
 	  public String  showregis(Model model) {
 		//-------------
 		model.addAttribute("user", new User());
+		model.addAttribute("userinfo", new UserInfo());
 		
 		return "Register";
 	}
 	@PostMapping("/Sucessfully")
-	public String  showregis_sucess(User user) {
+	public String  showregis_sucess(User user,UserInfo info) {
 		//-------------
+		info.setUser(user);
+		infoRepo.save(info);
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encodedPassword = encoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
 		userRepository.save(user);
+	
 		return "register_sucess";
 	}
 	
@@ -75,8 +82,10 @@ public class MainController {
 	}
 	
 	@GetMapping("/Account")
-	  public String  showAccount(Model model) {
+	  public String  showAccount(Model model  ,@AuthenticationPrincipal Authentication authentication) {
 		//-
+		authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = userServices.getCurrentlyLoggedInCustomer(authentication);
 
 		return "Account";
 	}

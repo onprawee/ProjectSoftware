@@ -5,6 +5,10 @@ body {
 .footer-background {
     background-color: rgb(204, 199, 199)
 }
+.icon{
+	color:black;
+	
+}
 
 @media(max-width:991px) {
     #heading {

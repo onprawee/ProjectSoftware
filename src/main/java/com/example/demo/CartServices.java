@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class CartServices {
 
 	@Autowired
 	private CartRepository cartRepo;
-	
 	
 	@Autowired 
 	private RecommendmenuRepository menuRepo;
@@ -44,7 +45,20 @@ public class CartServices {
 			} 
 			cartRepo.save(cartItem);
 				  
-	  return addQuantity; }
+			return addQuantity; 
+	  }
+	
+	public double updateQuantity(Integer menuId, Integer quantity, User user) {
+		cartRepo.updateQuantity(quantity, menuId, user.getId());
+		RecommendMenu menu = menuRepo.findById(menuId).get();
+		double subtotal = menu.getPrice() * quantity;
+		
+		return subtotal;
+	}
+	
+	public void removeMenu(Integer menuId, User user) {
+		cartRepo.deleteByUserAndMenu(user.getId(), menuId);
+	}
 	
 	
 }

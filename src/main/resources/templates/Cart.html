@@ -13,6 +13,8 @@
     <!--  <script th:src="@{/js/quantity.js}"></script> -->
     <script th:src="@{/js/update_remove_cart.js}"></script>
     <script th:src="@{/js/remove.js}"></script>
+    <script th:src="@{/js/order.js}"></script>
+    <script th:src="@{/js/checkout.js}"></script>
    	<!-- CSS -->
 	<link th:href="@{/css/home.css}" rel="stylesheet" />
 	<link th:href="@{/css/cart.css}" rel="stylesheet" />
@@ -72,27 +74,66 @@
           			<a class="nav-link dropdown-toggle" href="/Account" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
           			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown01">
             			<li><a class="dropdown-item" href="/Account">บัญชีของฉัน</a></li>
-            			<li><a class="dropdown-item" href="/Account">การซื้อของฉัน</a></li>
+            			
             			
           			</ul>
         		</li>
       		</ul>
     	</div>
     	<script type="text/javascript">
-				contextPath = "[[@{/}]]";
-				var csrfHeaderName = "[[${_csrf.headerName}]]";
-				var csrfValue = "[[${_csrf.token}]]";
-			</script>
+			contextPath = "[[@{/}]]";
+			var csrfHeaderName = "[[${_csrf.headerName}]]";
+			var csrfValue = "[[${_csrf.token}]]";
+			var fullname = "[[${#request.userPrincipal.principal.fullName}]]";
+			var tempmenu = null;
+			var total = 0;
+
+			function addMenuToOrder(menu){
+				if(tempmenu === null){
+					tempmenu = menu
+				}
+				else{
+					tempmenu = tempmenu + ", "+ menu
+				}
+			}
+			
+			function checkOut(){
+				tempmenu = null;
+				$('.crepe-menu').each(function(){
+					var id = $(this).attr('id');
+			        //Get the matrix value of the current div
+			        var menu_name = $(this).text();
+					var qty = $("#quantity"+id).val();
+					var price = $("#price"+id).text();
+					addMenuToOrder(menu_name+"("+price+"฿) x"+qty);
+			    });
+				$("#customer_name").val(fullname);
+				$("#menu_list").val(tempmenu);
+				$("#total_amount").val(total);  
+			}
+			
+			function updateTotal(){
+				total = 0;
+				
+				$(".menuSubtotal").each(function(index, element){
+					total = total + parseFloat(element.innerHTML);
+				});
+				
+				$("#totalAmount").text("ราคารวมทั้งหมด " + total + " บาท");
+				$("#orderTotal").text(total + "฿");
+			}
+			
+		</script>
 		</div>
 	</nav>
 	<!-- Cart -->
-	<form>
+	
 	 <div class="container bg-white rounded-top mt-5" id="zero-pad">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-10 col-12 pt-3">
                 <div class="d-flex">
                     <div class="pt-1">
-                        <h2>[[${#request.userPrincipal.principal.username}]] Cart</h2>       
+                        <h2>[[${#request.userPrincipal.principal.username}]]'s Cart</h2>       
                     </div>
                     </div>
                      <div class="d-flex flex-column pt-4">
@@ -104,9 +145,7 @@
                 <!--Show Order !! -->
                 <th:block th:each="item, status : ${cartItems}">
                 <div class="container mt-2" th:with="menu = ${item.recommendmenu}" th:id="'row' + ${status.count}">
-                 
                     <div>
-                   
                     	<table class="table table-borderless table-responsive ">
 							  <thead>
 							    <tr>
@@ -119,15 +158,14 @@
 							    </tr>
 							    </thead>
 							  <tbody>
-							 
 								    <tr>
 								      	<th scope="row">
 									      	<div>
 		                        				<img th:src="${menu.img_url}" width="120" height="120" alt="" id="image">
 		                        			</div>
 	                        			</th>
-								      	<td><div th:text="${menu.name}" class="p-2"></div></td>
-								      	<td><div><b th:text="${menu.price}"></b></div></td>
+								      	<td><div th:text="${menu.name}" th:id="${menu.id}" class="crepe-menu p-2"></div></td>
+								      	<td><div><b th:text="${menu.price}" th:id="'price'+${menu.id}"></b></div></td>
 								      	<td>
 							     			<div th:replace="quantity_control :: quantity_control(${item.quantity}, ${menu.id})">Quantity</div>				
 	                    			  	</td>
@@ -146,28 +184,70 @@
                 </div>
                 </th:block>
             </div>
-         
         </div>
-      
     </div>
     
     <div class="container bg-light rounded-bottom py-4" id="zero-pad" th:unless="${#lists.isEmpty(cartItems)}">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-10 col-12">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div> <button class="btn btn-sm bg-light border border-dark">GO BACK</button> </div>
                     <div class="px-md-0 px-1" id="footer-font"> 
                     	
                     	<span class="pl-md-4"><b class="h4" id="totalAmount" >TotalAmount</b></span> 
                     	
                     </div>
-                    <div> <button class="btn btn-sm bg-dark text-white px-lg-5 px-3">Check Out</button> </div>
+                    <div> 
+						<button 
+							class="btn btn-sm bg-dark text-white px-lg-5 px-3 "
+							onclick="checkOut()"
+							data-bs-toggle="modal"
+							data-bs-target="#exampleModal"
+						>
+							Check Out
+						</button> 
+					</div>
                 </div>
             </div>
         </div>
     </div>
-    </form>
-
+	
+	<!-- Pop up -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-keyboard="false" data-bs-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body ">
+					<div class="text-right"> <i class="fas fa-times" data-bs-dismiss="modal"></i> </div>
+					<div class="px-4 py-5">
+						<h5 class="text-uppercase">คุณ [[${#request.userPrincipal.principal.fullName}]]</h5>
+						<h4 class="mt-5 theme-color mb-5">ต้องการยืนยันออเดอร์นี้หรือไม่?</h4> <span class="theme-color">รายการสินค้า</span>
+						<div class="mb-3">
+							<hr class="new1">
+						</div>
+						<th:block th:each="item, status : ${cartItems}">
+							<div th:with="menu = ${item.recommendmenu}" th:id="'row' + ${status.count}">
+								<div class="d-flex justify-content-between"> 
+									<span class="font-weight-bold" th:text="${menu.name} + '(x' + ${item.quantity} + ')'"></span>
+									<span class="text-muted">[[${item.subtotal}]]฿</span>
+								</div>
+							</div>
+						</th:block>
+						<div class="d-flex justify-content-between"> <small>Shipping</small> <small>0.00฿</small> </div>
+						<div class="d-flex justify-content-between"> <small>Tax</small> <small>0.00฿</small> </div>
+						<div class="d-flex justify-content-between mt-3"> 
+							<span class="font-weight-bold">Total</span> 
+							<span class="font-weight-bold theme-color" id="orderTotal"></span> 
+						</div>
+						<form  class="box" th:action="@{/checkout}" method="post" th:object="${orders}">
+							<input type="hidden" id="customer_name" name="customer_name" th:field="*{customer_name}" />
+							<input type="hidden" id="menu_list" name="menu_list" th:field="*{menu_list}" />
+							<input type="hidden" id="total_amount" name="total_amount" th:field="*{total_amount}"/>
+							<div class="text-center mt-5"> <button type="submit" class="btn btn-primary" >ยืนยันออเดอร์</button> </div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
     
   	
 </body>

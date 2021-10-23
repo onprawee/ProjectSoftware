@@ -32,9 +32,6 @@ public class User {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
 	private List<Cart> carts;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
-	private List<OrderList> order;
-	
 	//OnetoOne
 	@OneToOne(mappedBy = "user" , cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn 

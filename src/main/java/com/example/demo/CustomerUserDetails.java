@@ -8,15 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class CustomerUserDetails implements UserDetails {
 
 	private User user;
-	private UserInfo userinfo;
-
-	public UserInfo getUserinfo() {
-		return userinfo;
-	}
-
-	public void setUserinfo(UserInfo userinfo) {
-		this.userinfo = userinfo;
-	}
 
 	public User getUser() {
 		return user;
@@ -28,6 +19,10 @@ public class CustomerUserDetails implements UserDetails {
 
 	public CustomerUserDetails(User user) {
 		this.user = user;
+	}
+	
+	public String getFullName() {
+		return this.user.getInfo().getFname() + " " + this.user.getInfo().getLname();
 	}
 
 	

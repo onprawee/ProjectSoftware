@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
 	$(".minusButton").on("click", function(evt) {
 		evt.preventDefault();
@@ -10,8 +11,6 @@ $(document).ready(function(){
 	});
 
 });
-
-
 // Minus
 function decreaseQuantity(link){
 		
@@ -61,13 +60,5 @@ function updateSubtotal(newSubtotal,menuId){
 	$("#subtotal" + menuId).text(newSubtotal);
 }
 //Update Total 
-function updateTotal(){
-	total = 0;
-	
-	$(".menuSubtotal").each(function(index, element){
-		total = total + parseFloat(element.innerHTML);
-	});
-	
-	$("#totalAmount").text("ราคารวมทั้งหมด " + total + " บาท");
-}
+
 

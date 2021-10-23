@@ -27,9 +27,6 @@ public class RecommendMenu {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "recommendmenu")
 	private List<Cart> carts;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "recommendmenu")
-	private List<OrderList> order;
-	
 	public Integer getId() {
 		return id;
 	}

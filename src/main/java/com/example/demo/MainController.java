@@ -47,14 +47,14 @@ public class MainController {
 		return "Register";
 	}
 	@PostMapping("/Sucessfully")
-	public String  showregis_sucess(User user,UserInfo info) {
+	public String showregis_sucess(User user,UserInfo info) {
 		//-------------
 		info.setUser(user);
 		infoRepo.save(info);
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encodedPassword = encoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
-		userRepository.save(user);
+		userRepository.save(user);       
 	
 		return "register_sucess";
 	}
@@ -89,7 +89,7 @@ public class MainController {
 
 		return "Account";
 	}
-	
+
 	//------------------------------------------------------------
 
 	

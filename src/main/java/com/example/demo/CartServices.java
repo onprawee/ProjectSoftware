@@ -58,8 +58,9 @@ public class CartServices {
 	public void removeMenu(Integer menuId, User user) {
 		cartRepo.deleteByUserAndMenu(user.getId(), menuId);
 	}
-	public void removecart(User user) {
-		cartRepo.deleteByUser(null);
+	
+	public void removeCart(User user) {
+		cartRepo.deleteByUser(user.getId());
 	}
 	
 	

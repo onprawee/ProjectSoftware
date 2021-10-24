@@ -24,6 +24,10 @@ public class CustomerUserDetails implements UserDetails {
 	public String getFullName() {
 		return this.user.getInfo().getFname() + " " + this.user.getInfo().getLname();
 	}
+	
+	public Integer getId() {
+		return this.user.getId();
+	}
 
 	
 //--------------------------------------------------------------------------------

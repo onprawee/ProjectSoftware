@@ -70,5 +70,21 @@ public class CartRestController {
 		return "Menu has been removed from your Cart.";
 	}
 	
+	@PostMapping("/Cart/cartremove/{pid}")
+	public String  removeAllUserCart(@AuthenticationPrincipal Authentication authentication) {
+		//-------------
+		authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = userServices.getCurrentlyLoggedInCustomer(authentication);
+		
+		
+		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "You must Login to remove menu.";
+		}
+		System.out.println("remove: " + 1 + "-" + user);
+		cartServices.removeCart(user);
+		
+		return "Cart Clear.";
+	}
+	
 }
 

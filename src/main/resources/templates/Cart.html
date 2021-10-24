@@ -176,10 +176,8 @@
 		                    				<div><a class="fas fa-trash icon remove" th:rowNumber="${status.count}" th:href="@{'/Cart/remove/' + ${menu.id}}"></a></div>		                    				
 		                    			</td>
 								    </tr>
-								 
 							 </tbody>
 						</table>
-					
                 </div>
                 </div>
                 </th:block>
@@ -191,10 +189,8 @@
         <div class="row d-flex justify-content-center">
             <div class="col-lg-10 col-12">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="px-md-0 px-1" id="footer-font"> 
-                    	
-                    	<span class="pl-md-4"><b class="h4" id="totalAmount" >TotalAmount</b></span> 
-                    	
+                    <div class="px-md-0 px-1 text-center" id="footer-font"> 
+                    	<span class="pl-md-4"><b class="h4" id="totalAmount">TotalAmount</b></span> 
                     </div>
                     <div> 
 						<button 
@@ -241,7 +237,7 @@
 							<input type="hidden" id="customer_name" name="customer_name" th:field="*{customer_name}" />
 							<input type="hidden" id="menu_list" name="menu_list" th:field="*{menu_list}" />
 							<input type="hidden" id="total_amount" name="total_amount" th:field="*{total_amount}"/>
-							<div class="text-center mt-5"> <button type="submit" class="btn btn-primary" >ยืนยันออเดอร์</button> </div>
+							<div class="text-center mt-5"> <button type="submit" class="btn btn-outline-dark" th:onclick="|removeAllCart('${#request.userPrincipal.principal.id}')|">ยืนยันออเดอร์</button> </div>
 						</form>
 					</div>
 				</div>

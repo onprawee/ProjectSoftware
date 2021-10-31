@@ -26,13 +26,7 @@ function removeFromCart(link){
 		rowNumber = link.attr("rowNumber");
 		removeMenu(rowNumber)
 		updateTotal();
-		/*if(response.includes("removed")){
-			$("remove").on(function(e){
-				rowNumber = link.attr("rowNumber");
-				removeMenu(rowNumber)
-				updateTotal();
-			});
-		}	*/	 
+ 
 	}).fail(function(){
 		console.log("fail");
 		alert("Delete Fail");

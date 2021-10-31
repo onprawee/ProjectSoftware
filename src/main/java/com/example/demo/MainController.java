@@ -30,7 +30,7 @@ public class MainController {
 	private CustomerUserDetailsService userServices;
 	
 	@RequestMapping("/Login")
-	public String shoeLogin(Model model) {
+	public String showLogin(Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
 			return "Login";

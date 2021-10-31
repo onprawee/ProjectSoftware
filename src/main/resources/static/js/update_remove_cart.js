@@ -46,6 +46,7 @@ function updateQuantity(menuId,quantity){
 			xhr.setRequestHeader(csrfHeaderName, csrfValue);
 		}
 	}).done(function(newsubtotal){
+		window.location.reload()
 		updateSubtotal(newsubtotal,menuId);
 		updateTotal();
 		/*console.log(newsubtotal);

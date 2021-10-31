@@ -100,11 +100,13 @@
 			function checkOut(){
 				tempmenu = null;
 				$('.crepe-menu').each(function(){
+					
 					var id = $(this).attr('id');
 			        //Get the matrix value of the current div
 			        var menu_name = $(this).text();
 					var qty = $("#quantity"+id).val();
 					var price = $("#price"+id).text();
+					
 					addMenuToOrder(menu_name+"("+price+"฿) x"+qty);
 			    });
 				$("#customer_name").val(fullname);
@@ -117,6 +119,7 @@
 				
 				$(".menuSubtotal").each(function(index, element){
 					total = total + parseFloat(element.innerHTML);
+					
 				});
 				
 				$("#totalAmount").text("ราคารวมทั้งหมด " + total + " บาท");
